@@ -1,0 +1,14 @@
+FILE=".env.production"
+if [ -f "$FILE" ]; then
+    rm $FILE
+fi
+
+touch $FILE
+echo "RECAPTCHA_SECRET_KEY=${ICW_RECAPTCHA_SECRET_KEY}" >> $FILE
+echo "FE_DOMAIN=${ICW_FE_DOMAIN}" >> $FILE
+echo "EMAIL_HOST=${ICW_EMAIL_HOST}" >> $FILE
+echo "EMAIL_USER=${ICW_EMAIL_USER}" >> $FILE
+echo "EMAIL_PASS=${ICW_EMAIL_PASS}" >> $FILE
+echo "MONGO_HOST=${ICW_MONGO_HOST}" >> $FILE
+echo "MONGO_USER=${ICW_MONGO_USER}" >> $FILE
+echo "MONGO_PASS=${ICW_MONGO_PASS}" >> $FILE

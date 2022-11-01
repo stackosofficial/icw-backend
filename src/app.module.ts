@@ -11,7 +11,12 @@ import { AppController } from './app.controller';
   imports: [ConfigModule.forRoot(),
     EventModule,
     NewsletterModule,
-    MongooseModule.forRoot('mongodb://localhost:8080/local'),
+    MongooseModule.forRoot(process.env.MONGO_HOST,
+    {
+      dbName: 'local',
+      user: process.env.MONGO_USER,
+      pass: process.env.MONGO_PASS
+    }),
     MailerModule.forRoot({
       transport: {
         host: process.env.EMAIL_HOST,
