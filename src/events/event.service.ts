@@ -85,12 +85,61 @@ export class EventsService {
            });      
     }
 
+    async adminSendApprovedMail(modifiedEvents) {
+        const updatedEvents = modifiedEvents.updatedEvents;
+        if(updatedEvents) {
+            for(const key in updatedEvents) {
+                if(updatedEvents[key].status == 'A') {
+                    const approvedEvent = await this.eventModel.find({_id: key});
+                    if(approvedEvent && approvedEvent.length > 0 && approvedEvent[0].createdByEmail) {
+                        try {
+                            await this.mailService.sendMail({
+                                to: approvedEvent[0].createdByEmail,
+                                from: process.env.EMAIL_USER,
+                                subject: 'Your event has been approved.',
+                                text: `Your event ${approvedEvent[0].name} is approved and will be displayed on our website.`, 
+                               });   
+                        } catch (error) {
+                            console.error(error);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    async adminSendDeleteMail(modifiedEvents) {
+        const deletedEvents = modifiedEvents.deletedEvents;
+        if(deletedEvents) {
+            for(var i = 0; i < deletedEvents.length; i++) {
+                const {eventID, reason} = deletedEvents[i];
+                console.log("before sending deleted email: ", JSON.stringify(deletedEvents[i]));
+                
+                const deletedEvent = await this.eventModel.find({_id: eventID});
+
+                console.log("message sent to user, ",`Your event ${deletedEvent[0].name} is ${deletedEvent[0].status == 'A' ? 'deleted': 'rejected'}. ${reason? `reason: ${reason}`: ''}`)
+                if(deletedEvent && deletedEvent.length > 0 && deletedEvent[0].createdByEmail) {
+                    try {
+                        await this.mailService.sendMail({
+                            to: deletedEvent[0].createdByEmail,
+                            from: process.env.EMAIL_USER,
+                            subject: deletedEvent[0].status == 'A' ? 'Your event has been deleted.' : 'Your event has been rejected.',
+                            text: `Your event ${deletedEvent[0].name} is ${deletedEvent[0].status == 'A' ? 'deleted': 'rejected'}. ${reason? `reason: ${reason}`: ''}`, 
+                           });   
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+            }
+        }
+    }
+
     async userAddEvent(event : Event) : Promise<Event> {
         event.status = 'W';
         return new this.eventModel(event).save();
     }
 
-    async adminChangeEvents(eventChanges) : Promise<any> {
+    async adminChangeEvents(eventChanges) {
         
         const bulkList = [];
         
@@ -131,17 +180,23 @@ export class EventsService {
         if(eventChanges.deletedEvents) {
 
             for(var i = 0; i < eventChanges.deletedEvents.length; i++) {
-                const eventID = eventChanges.deletedEvents[i];
+                console.log("checking deleted events: "+ JSON.stringify(eventChanges.deletedEvents));
+                const {eventID} = eventChanges.deletedEvents[i];
                 bulkList.push( { deleteOne: { filter: { _id: eventID } } } );
                 toChangeFlag = true;
             }
         }
 
         if(toChangeFlag) {
-            return this.eventModel.bulkWrite(bulkList);
-        }
-        
-        return null;
+            try {
+                this.eventModel.bulkWrite(bulkList);
+            } catch(err) {
+                console.error(err);
+                return {success: false, reason: 'Failed to process the changes.'};
+            }
+       }
+
+        return {success: true};
     }
 
     async getApprovedEvents() : Promise<any> {

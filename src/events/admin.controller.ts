@@ -15,10 +15,23 @@ export class AdminController {
 
     @Post()
     async postEvents(@Body() modifiedEvents) {
+
         try {
-            await this.eventsService.adminChangeEvents(modifiedEvents);
+            await this.eventsService.adminSendDeleteMail(modifiedEvents);
         } catch(error) {
-            return {success: false, reason: 'Failed to process the changes.'};
+            console.error(error);
+        }
+
+        const changeRes = await this.eventsService.adminChangeEvents(modifiedEvents);
+
+        if(!changeRes.success) {
+            return changeRes;
+        }
+
+        try {
+            await this.eventsService.adminSendApprovedMail(modifiedEvents);
+        } catch(error) {
+            console.error(error);
         }
 
         try {

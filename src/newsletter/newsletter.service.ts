@@ -32,15 +32,13 @@ export class NewsletterService {
 
             let nlUser: NewsletterEmail = {email, active: false, validToken: token};
 
-            var sendLink = `https://${process.env.FE_DOMAIN}/newsletter/validation/${token}`;
-            // sendNewsletterEmail(process.env.EMAIL_USER, email, 'Confirmation', `Click on this URL for confirming your email. ${sendLink}`, ()=>{});
-            
             try {
+                var sendLink = `https://${process.env.FE_DOMAIN}/newsletter/validation/${token}`;
                 const emailRes = await this.mailService.sendMail({
                     to: email,
                     from: process.env.EMAIL_USER,
                     subject: 'Confirmation',
-                    text: 'Click on this URL for confirming your email', 
+                    text: `Click on this URL for confirming your email. ${sendLink}`, 
                    });
                 console.log("emailRes: ", JSON.stringify(emailRes));
             }

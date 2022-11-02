@@ -1,14 +1,5 @@
 import { Controller
-  ,Get
-  ,Post
-  ,HttpCode
-  ,Header
-  ,Redirect
-  ,Query
-  ,Param, 
-  Body,
-  Put,
-  Delete} from '@nestjs/common';
+  ,Get} from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
