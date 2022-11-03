@@ -28,11 +28,7 @@ export class AdminController {
             return changeRes;
         }
 
-        try {
-            await this.eventsService.adminSendApprovedMail(modifiedEvents);
-        } catch(error) {
-            console.error(error);
-        }
+        await this.eventsService.adminSendApprovedMail(modifiedEvents);
 
         try {
             const res = await this.eventsService.getAllEvents();

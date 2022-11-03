@@ -49,13 +49,8 @@ export class UserController {
             return {success:false, reason: 'Failed to add user event.'};
         }
 
-        try {
-            const resp = await this.eventsService.userSendSuccessMail(payload.event);
-        }
-        catch(err) {
-            console.error(err);
-        }
-
+        this.eventsService.userSendSuccessMail(payload.event);
+        
         return {success:true};
     }
 

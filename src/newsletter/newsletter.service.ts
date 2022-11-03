@@ -33,7 +33,7 @@ export class NewsletterService {
             let nlUser: NewsletterEmail = {email, active: false, validToken: token};
 
             try {
-                var sendLink = `https://${process.env.FE_DOMAIN}/newsletter/validation/${token}`;
+                var sendLink = `${process.env.FE_DOMAIN}/newsletter/validation/${token}`;
                 const emailRes = await this.mailService.sendMail({
                     to: email,
                     from: process.env.EMAIL_USER,

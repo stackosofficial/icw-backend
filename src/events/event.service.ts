@@ -39,6 +39,27 @@ export class EventsService {
         let bTime = new Date(event.to);
         const today = new Date();
 
+        if(event.name.length > 32) {
+            return {
+                success: false,
+                reason: 'name should be less than 32 characters.'
+            };
+        }
+
+        if(event.venue && event.venue.length > 32) {
+            return {
+                success: false,
+                reason: 'Venue should be less than 32 characters.'
+            };
+        }
+
+        if(event.createdByEmail.length > 254) {
+            return {
+                success: false,
+                reason: 'Email length is too big.'
+            };
+        }
+
         if(aTime < today) {
             return {
                 success: false,
@@ -77,12 +98,17 @@ export class EventsService {
     }
 
     async userSendSuccessMail(event: Event) {
-        return await this.mailService.sendMail({
-            to: event.createdByEmail,
-            from: process.env.EMAIL_USER,
-            subject: 'Your event has been registered.',
-            text: `Thanks for registering. Your event ${event.name} is currently under approval.`, 
-           });      
+        try {
+            await this.mailService.sendMail({
+                to: event.createdByEmail,
+                from: process.env.EMAIL_USER,
+                subject: 'Your event has been registered.',
+                text: `Thanks for registering. Your event ${event.name} is currently under approval.`, 
+               }); 
+        }
+        catch(err) {
+            console.error(err);
+        }
     }
 
     async adminSendApprovedMail(modifiedEvents) {
@@ -189,7 +215,7 @@ export class EventsService {
 
         if(toChangeFlag) {
             try {
-                this.eventModel.bulkWrite(bulkList);
+                await this.eventModel.bulkWrite(bulkList);
             } catch(err) {
                 console.error(err);
                 return {success: false, reason: 'Failed to process the changes.'};
@@ -200,7 +226,17 @@ export class EventsService {
     }
 
     async getApprovedEvents() : Promise<any> {
-        return await this.eventModel.find({status: 'A'});
+        return await this.eventModel.find({status: 'A'})
+        .select({
+            _id: 0,
+            name: 1,
+            link: 1,
+            venue: 1,
+            category: 1,
+            from: 1,
+            to: 1
+        })
+        ;
     }
 
     async getAllEvents() : Promise<any> {
