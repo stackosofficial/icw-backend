@@ -9,13 +9,14 @@ export class AdminController {
 
     @Get()
     async getEvents() {
+        return '';
         const eventList = await this.eventsService.getAllEvents();
         return eventList;
     }
 
     @Post()
     async postEvents(@Body() modifiedEvents) {
-
+        return '';
         try {
             await this.eventsService.adminSendDeleteMail(modifiedEvents);
         } catch(error) {
