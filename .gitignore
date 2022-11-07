@@ -11,6 +11,8 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+.VSCodeCounter
+
 # OS
 .DS_Store
 

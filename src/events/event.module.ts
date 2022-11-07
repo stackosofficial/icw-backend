@@ -7,12 +7,15 @@ import { UserController } from './user.controller';
 import {Event, EventSchema} from '../DTO/event';
 import {NewsletterEmail, NewsletterEmailSchema} from '../DTO/newsletterEmail';
 import {HttpModule} from '@nestjs/axios';
+import { AdminService } from './admin.service';
+import { Admin, AdminSchema } from 'src/DTO/admin';
 
 @Module({
     imports: [MongooseModule.forFeature([{name: Event.name, schema: EventSchema},
-            {name: NewsletterEmail.name, schema: NewsletterEmailSchema}]),
+            {name: NewsletterEmail.name, schema: NewsletterEmailSchema},
+            {name: Admin.name, schema: AdminSchema}]),
     HttpModule],
-    providers: [EventsService, UserService],
+    providers: [EventsService, UserService, AdminService],
     controllers: [AdminController, UserController],
 })
 export class EventModule {}

@@ -17,8 +17,8 @@ export class UserController {
     }
 
     @Post()
-    async postEvents(@Body() payload: UserEvent, @RealIP() ip: string ) {
-
+    async postEvents(@Body() payload: UserEvent, @RealIP() ip: string )
+    {
         if(!payload.token) {
             return {success: false, reason: 'Captcha is not valid. Please enter captcha again.'};
         }
@@ -50,7 +50,7 @@ export class UserController {
         }
 
         this.eventsService.userSendSuccessMail(payload.event);
-        
+
         return {success:true};
     }
 

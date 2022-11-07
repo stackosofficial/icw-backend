@@ -32,7 +32,8 @@ const stringIsAValidUrl = (s, protocols) => {
 @Injectable()
 export class EventsService {
 
-    constructor(@InjectModel(Event.name) private eventModel: Model<EventDocument>,private mailService: MailerService ){}
+    constructor(@InjectModel(Event.name) private eventModel: Model<EventDocument>
+    ,private mailService: MailerService ){}
 
     validateEvent = (event : Event) => {
         let aTime = new Date(event.from);
@@ -162,11 +163,12 @@ export class EventsService {
 
     async userAddEvent(event : Event) : Promise<Event> {
         event.status = 'W';
+        event.createdDate = new Date();
         return new this.eventModel(event).save();
     }
 
-    async adminChangeEvents(eventChanges) {
-        
+    async adminChangeEvents(eventChanges)
+    {    
         const bulkList = [];
         
         var toChangeFlag = false;
@@ -195,7 +197,8 @@ export class EventsService {
                 }
                 bulkList.push({
                     insertOne: { document: {
-                            ...event
+                            ...event,
+                            createdDate: new Date()
                         }
                     }
                 })
