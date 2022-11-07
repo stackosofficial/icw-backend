@@ -45,11 +45,15 @@ export class Event {
 
     @Prop()
     @IsString()
-    phoneNumber: string;
+    phoneNo: string;
 
     @Prop()
     @IsString()
     category: string;
+
+    @Prop()
+    @IsString()
+    contact: string;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

@@ -12,6 +12,7 @@ const categoriesList = [
     "Conference",
     "Talks & Networking",
     "Networking & After-party",
+    "Hackathon"
 ];
 
 
@@ -29,6 +30,25 @@ const stringIsAValidUrl = (s, protocols) => {
     }
 };
 
+const isPhoneNo = (str: string) => 
+{
+    if(!str)
+        return false;
+    try {
+        var num : number = parseInt(str);
+        if(Math.ceil(num) - num) {
+            return false;
+        }
+        if(num > 9999999999 || num < 1000000000)
+            return false;
+
+        return true;
+    }
+    catch(err) {
+        return false;
+    }
+}
+
 @Injectable()
 export class EventsService {
 
@@ -36,9 +56,6 @@ export class EventsService {
     ,private mailService: MailerService ){}
 
     validateEvent = (event : Event) => {
-        let aTime = new Date(event.from);
-        let bTime = new Date(event.to);
-        const today = new Date();
 
         if(event.name.length > 32) {
             return {
@@ -61,17 +78,25 @@ export class EventsService {
             };
         }
 
-        if(aTime < today) {
-            return {
-                success: false,
-                reason: 'From time cannot be older than today'
-            };
-        }
-        if(aTime > bTime) {
-            return {
-                success: false,
-                reason: 'From time cannot be older than To time'
-            };
+        if(event.from) {
+            let aTime = new Date(event.from);
+            const today = new Date();
+            if(aTime < today) {
+                return {
+                    success: false,
+                    reason: 'From time cannot be older than today'
+                };
+            }
+
+            if(event.to) {
+                let bTime = new Date(event.to);
+                if(aTime > bTime) {
+                    return {
+                        success: false,
+                        reason: 'From time cannot be older than To time'
+                    };
+                }
+            }
         }
         
         if(!stringIsAValidUrl(event.link, ['http', 'https'])) {
@@ -85,6 +110,13 @@ export class EventsService {
             return {
                 success: false,
                 reason: 'Email is not provided.'
+            }
+        }
+
+        if(!isPhoneNo(event.phoneNo)) {
+            return {
+                success: false,
+                reason: 'Enter a valid phone no.'
             }
         }
 
@@ -164,6 +196,11 @@ export class EventsService {
     async userAddEvent(event : Event) : Promise<Event> {
         event.status = 'W';
         event.createdDate = new Date();
+
+        const resp = this.validateEvent(event);
+        if(!resp.success)
+            throw new Error(resp.reason);
+
         return new this.eventModel(event).save();
     }
 
@@ -236,6 +273,7 @@ export class EventsService {
             link: 1,
             venue: 1,
             category: 1,
+            contact: 1,
             from: 1,
             to: 1
         })
