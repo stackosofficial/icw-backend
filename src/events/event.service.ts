@@ -99,7 +99,7 @@ export class EventsService {
             }
         }
         
-        if(!stringIsAValidUrl(event.link, ['http', 'https'])) {
+        if(event.link && !stringIsAValidUrl(event.link, ['http', 'https'])) {
             return {
                 success: false,
                 reason: 'Link is not a valid URL. Enter a HTTP/HTTPS link.'
@@ -172,11 +172,9 @@ export class EventsService {
         if(deletedEvents) {
             for(var i = 0; i < deletedEvents.length; i++) {
                 const {eventID, reason} = deletedEvents[i];
-                console.log("before sending deleted email: ", JSON.stringify(deletedEvents[i]));
-                
+  
                 const deletedEvent = await this.eventModel.find({_id: eventID});
-
-                console.log("message sent to user, ",`Your event ${deletedEvent[0].name} is ${deletedEvent[0].status == 'A' ? 'deleted': 'rejected'}. ${reason? `reason: ${reason}`: ''}`)
+                
                 if(deletedEvent && deletedEvent.length > 0 && deletedEvent[0].createdByEmail) {
                     try {
                         await this.mailService.sendMail({
@@ -246,7 +244,6 @@ export class EventsService {
         if(eventChanges.deletedEvents) {
 
             for(var i = 0; i < eventChanges.deletedEvents.length; i++) {
-                console.log("checking deleted events: "+ JSON.stringify(eventChanges.deletedEvents));
                 const {eventID} = eventChanges.deletedEvents[i];
                 bulkList.push( { deleteOne: { filter: { _id: eventID } } } );
                 toChangeFlag = true;
@@ -275,7 +272,8 @@ export class EventsService {
             category: 1,
             contact: 1,
             from: 1,
-            to: 1
+            to: 1,
+            price: 1
         })
         ;
     }

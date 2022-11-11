@@ -54,6 +54,10 @@ export class Event {
     @Prop()
     @IsString()
     contact: string;
+
+    @Prop()
+    @IsNumber()
+    price: number;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

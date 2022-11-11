@@ -55,7 +55,6 @@ export class AdminService {
                 const tokenTime = new Date();
                 // const loginTime = new Date();
                 // const loginEndTime = new Date(loginTime.getTime() + 1 * 60 * 60 * 1000);
-                console.log("creating new token");
                 const newTokenTime = new Date(tokenTime.getTime() + 3 * 60 * 1000);
                 await this.adminModel.updateOne({username: admin.username}, {
                     baseToken: base,
@@ -81,13 +80,10 @@ export class AdminService {
     {
         const nowTime = new Date();
         if((!admin.baseToken) || (admin.baseToken && nowTime > admin.tokenTime)) {
-            console.log("token expired");
             return false;
         }
 
         const decryptVal = AES.decrypt(recvToken, admin.password).toString(enc.Utf8);
-
-        console.log("comparing token ", decryptVal, admin.baseToken);
 
         if(decryptVal != admin.baseToken) {
 
@@ -117,7 +113,6 @@ export class AdminService {
             };
         }
 
-        console.log("decrypting token");
         if(!this.validateToken(admin, recvToken)) {
             return {
                 success: false,
@@ -140,7 +135,6 @@ export class AdminService {
             loginDuration = 1 * 60 * 1000;
             const loginEndTime = new Date(loginTime.getTime() + loginDuration);
 
-            console.log("login: ", loginTime, loginEndTime);
             await this.adminModel.updateOne({username: admin.username}, {
                 isLogged: true,
                 loginStart: loginTime,
@@ -190,7 +184,6 @@ export class AdminService {
             await this.adminModel.updateOne({username: admin.username}, {
                 isLogged: false
             });
-            console.log("logout is done");
         }
         catch(err) {
             console.error(err);

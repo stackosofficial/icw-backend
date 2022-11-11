@@ -40,7 +40,6 @@ export class NewsletterService {
                     subject: 'Confirmation',
                     text: `Click on this URL for confirming your email. ${sendLink}`, 
                    });
-                console.log("emailRes: ", JSON.stringify(emailRes));
             }
             catch(err) {
                 console.error(err);
@@ -82,6 +81,23 @@ export class NewsletterService {
         } catch(error) {
             console.error(error);
             return {success: false, reason: 'Failed to confirm user email. Please try again after sometime.'};
+        }
+    }
+
+    async getNewsletterEmails () {
+        try {
+            const res = await this.letterModel.find({active: true});
+            return {
+                success: true,
+                emailList: res
+            }
+        }
+        catch(err) {
+            console.error(err);
+            return {
+                success: false,
+                reason: 'Failed to retreive the email list.'
+            }
         }
     }
 }

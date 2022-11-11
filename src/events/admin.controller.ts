@@ -1,5 +1,6 @@
 import {Controller, Get, Post, Put, Delete, Param, Body} from '@nestjs/common';
 import { EventsService } from './event.service';
+import { NewsletterService } from 'src/newsletter/newsletter.service';
 import { Event } from '../DTO/event';
 import { AdminService } from './admin.service';
 import {LoginAuth} from '../DTO/loginAuth'
@@ -8,7 +9,8 @@ import {LoginAuth} from '../DTO/loginAuth'
 export class AdminController {
 
     constructor(private eventsService : EventsService
-        ,private adminService: AdminService) {}
+        ,private adminService: AdminService
+        ,private newsletterService: NewsletterService) {}
 
 
     @Get('token')
@@ -89,6 +91,17 @@ export class AdminController {
         }
     }
     
+
+    @Post('newsletter')
+    async getNewsletter(@Body() payload)
+    {
+        const resp = await this.adminService.authorizeAdmin(payload, null);
+        if(!resp.success) {
+            return resp;    
+        }
+
+        return await this.newsletterService.getNewsletterEmails();
+    }
 
     // @Post('event-file')
     // async getEvents(@Body() payload)

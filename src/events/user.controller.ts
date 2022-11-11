@@ -46,6 +46,7 @@ export class UserController {
             await this.eventsService.userAddEvent(payload.event);
         }
         catch(err) {
+            console.error(err);
             return {success:false, reason: 'Failed to add user event.'};
         }
 

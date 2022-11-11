@@ -8,6 +8,7 @@ import {Event, EventSchema} from '../DTO/event';
 import {NewsletterEmail, NewsletterEmailSchema} from '../DTO/newsletterEmail';
 import {HttpModule} from '@nestjs/axios';
 import { AdminService } from './admin.service';
+import { NewsletterService } from 'src/newsletter/newsletter.service';
 import { Admin, AdminSchema } from 'src/DTO/admin';
 
 @Module({
@@ -15,7 +16,7 @@ import { Admin, AdminSchema } from 'src/DTO/admin';
             {name: NewsletterEmail.name, schema: NewsletterEmailSchema},
             {name: Admin.name, schema: AdminSchema}]),
     HttpModule],
-    providers: [EventsService, UserService, AdminService],
+    providers: [EventsService, UserService, AdminService, NewsletterService],
     controllers: [AdminController, UserController],
 })
 export class EventModule {}

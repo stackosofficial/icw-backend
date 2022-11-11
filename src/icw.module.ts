@@ -7,11 +7,6 @@ import { AppService } from './app.service';
 import { EventModule } from './events/event.module';
 import { AppController } from './app.controller';
 
-const test = (configService: ConfigService) => {
-    console.log("test: ",process.env.EMAIL_USER);
-    return process.env.EMAIL_USER;
-}
-
 
 @Module({
   imports: [EventModule,
