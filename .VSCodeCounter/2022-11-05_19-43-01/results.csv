@@ -1,0 +1,35 @@
+"filename", "language", "JSON with Comments", "JSON", "Shell Script", "TypeScript", "Markdown", "JavaScript", "comment", "blank", "total"
+"c:\Users\mithu\Documents\work\stackos\icw-backend\.eslintrc.js", "JavaScript", 0, 0, 0, 0, 0, 25, 0, 1, 26
+"c:\Users\mithu\Documents\work\stackos\icw-backend\README.md", "Markdown", 0, 0, 0, 0, 52, 0, 2, 21, 75
+"c:\Users\mithu\Documents\work\stackos\icw-backend\env.sh", "Shell Script", 0, 0, 13, 0, 0, 0, 0, 2, 15
+"c:\Users\mithu\Documents\work\stackos\icw-backend\nest-cli.json", "JSON", 0, 5, 0, 0, 0, 0, 0, 1, 6
+"c:\Users\mithu\Documents\work\stackos\icw-backend\package-lock.json", "JSON", 0, 9497, 0, 0, 0, 0, 0, 1, 9498
+"c:\Users\mithu\Documents\work\stackos\icw-backend\package.json", "JSON", 0, 76, 0, 0, 0, 0, 6, 0, 82
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\DTO\admin.ts", "TypeScript", 0, 0, 0, 41, 0, 0, 0, 11, 52
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\DTO\event.ts", "TypeScript", 0, 0, 0, 39, 0, 0, 0, 12, 51
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\DTO\loginAuth.ts", "TypeScript", 0, 0, 0, 5, 0, 0, 0, 5, 10
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\DTO\newsletterEmail.ts", "TypeScript", 0, 0, 0, 13, 0, 0, 0, 6, 19
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\DTO\userEventPayload.ts", "TypeScript", 0, 0, 0, 8, 0, 0, 0, 6, 14
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\app.controller.spec.ts", "TypeScript", 0, 0, 0, 18, 0, 0, 0, 5, 23
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\app.controller.ts", "TypeScript", 0, 0, 0, 11, 0, 0, 0, 3, 14
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\app.module.ts", "TypeScript", 0, 0, 0, 21, 0, 0, 0, 4, 25
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\app.service.ts", "TypeScript", 0, 0, 0, 7, 0, 0, 0, 1, 8
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\admin.controller.ts", "TypeScript", 0, 0, 0, 73, 0, 0, 0, 18, 91
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\admin.service.ts", "TypeScript", 0, 0, 0, 227, 0, 0, 0, 45, 272
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\event.module.ts", "TypeScript", 0, 0, 0, 20, 0, 0, 0, 2, 22
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\event.service.ts", "TypeScript", 0, 0, 0, 215, 0, 0, 0, 32, 247
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\user.controller.ts", "TypeScript", 0, 0, 0, 41, 0, 0, 1, 15, 57
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\user.service.ts", "TypeScript", 0, 0, 0, 13, 0, 0, 1, 4, 18
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\icw.module.ts", "TypeScript", 0, 0, 0, 41, 0, 0, 1, 5, 47
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\main.ts", "TypeScript", 0, 0, 0, 10, 0, 0, 6, 4, 20
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\newsletter\newsletter.controller.ts", "TypeScript", 0, 0, 0, 27, 0, 0, 0, 4, 31
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\newsletter\newsletter.module.ts", "TypeScript", 0, 0, 0, 11, 0, 0, 0, 3, 14
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\newsletter\newsletter.service.ts", "TypeScript", 0, 0, 0, 76, 0, 0, 2, 11, 89
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\userEmailService.ts", "TypeScript", 0, 0, 0, 27, 0, 0, 0, 6, 33
+"c:\Users\mithu\Documents\work\stackos\icw-backend\src\utils.ts", "TypeScript", 0, 0, 0, 14, 0, 0, 0, 3, 17
+"c:\Users\mithu\Documents\work\stackos\icw-backend\start.sh", "Shell Script", 0, 0, 1, 0, 0, 0, 0, 0, 1
+"c:\Users\mithu\Documents\work\stackos\icw-backend\test\app.e2e-spec.ts", "TypeScript", 0, 0, 0, 20, 0, 0, 0, 5, 25
+"c:\Users\mithu\Documents\work\stackos\icw-backend\test\jest-e2e.json", "JSON", 0, 9, 0, 0, 0, 0, 0, 1, 10
+"c:\Users\mithu\Documents\work\stackos\icw-backend\tsconfig.build.json", "JSON", 0, 3, 0, 0, 0, 0, 2, 0, 5
+"c:\Users\mithu\Documents\work\stackos\icw-backend\tsconfig.json", "JSON with Comments", 21, 0, 0, 0, 0, 0, 0, 1, 22
+"Total", "-", 21, 9590, 14, 978, 52, 25, 21, 238, 10939

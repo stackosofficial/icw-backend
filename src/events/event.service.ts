@@ -12,6 +12,7 @@ const categoriesList = [
     "Conference",
     "Talks & Networking",
     "Networking & After-party",
+    "Hackathon"
 ];
 
 
@@ -29,15 +30,32 @@ const stringIsAValidUrl = (s, protocols) => {
     }
 };
 
+const isPhoneNo = (str: string) => 
+{
+    if(!str)
+        return false;
+    try {
+        var num : number = parseInt(str);
+        if(Math.ceil(num) - num) {
+            return false;
+        }
+        if(num > 9999999999 || num < 1000000000)
+            return false;
+
+        return true;
+    }
+    catch(err) {
+        return false;
+    }
+}
+
 @Injectable()
 export class EventsService {
 
-    constructor(@InjectModel(Event.name) private eventModel: Model<EventDocument>,private mailService: MailerService ){}
+    constructor(@InjectModel(Event.name) private eventModel: Model<EventDocument>
+    ,private mailService: MailerService ){}
 
     validateEvent = (event : Event) => {
-        let aTime = new Date(event.from);
-        let bTime = new Date(event.to);
-        const today = new Date();
 
         if(event.name.length > 32) {
             return {
@@ -60,20 +78,28 @@ export class EventsService {
             };
         }
 
-        if(aTime < today) {
-            return {
-                success: false,
-                reason: 'From time cannot be older than today'
-            };
-        }
-        if(aTime > bTime) {
-            return {
-                success: false,
-                reason: 'From time cannot be older than To time'
-            };
+        if(event.from) {
+            let aTime = new Date(event.from);
+            const today = new Date();
+            if(aTime < today) {
+                return {
+                    success: false,
+                    reason: 'From time cannot be older than today'
+                };
+            }
+
+            if(event.to) {
+                let bTime = new Date(event.to);
+                if(aTime > bTime) {
+                    return {
+                        success: false,
+                        reason: 'From time cannot be older than To time'
+                    };
+                }
+            }
         }
         
-        if(!stringIsAValidUrl(event.link, ['http', 'https'])) {
+        if(event.link && !stringIsAValidUrl(event.link, ['http', 'https'])) {
             return {
                 success: false,
                 reason: 'Link is not a valid URL. Enter a HTTP/HTTPS link.'
@@ -84,6 +110,13 @@ export class EventsService {
             return {
                 success: false,
                 reason: 'Email is not provided.'
+            }
+        }
+
+        if(!isPhoneNo(event.phoneNo)) {
+            return {
+                success: false,
+                reason: 'Enter a valid phone no.'
             }
         }
 
@@ -139,11 +172,9 @@ export class EventsService {
         if(deletedEvents) {
             for(var i = 0; i < deletedEvents.length; i++) {
                 const {eventID, reason} = deletedEvents[i];
-                console.log("before sending deleted email: ", JSON.stringify(deletedEvents[i]));
-                
+  
                 const deletedEvent = await this.eventModel.find({_id: eventID});
-
-                console.log("message sent to user, ",`Your event ${deletedEvent[0].name} is ${deletedEvent[0].status == 'A' ? 'deleted': 'rejected'}. ${reason? `reason: ${reason}`: ''}`)
+                
                 if(deletedEvent && deletedEvent.length > 0 && deletedEvent[0].createdByEmail) {
                     try {
                         await this.mailService.sendMail({
@@ -162,11 +193,17 @@ export class EventsService {
 
     async userAddEvent(event : Event) : Promise<Event> {
         event.status = 'W';
+        event.createdDate = new Date();
+
+        const resp = this.validateEvent(event);
+        if(!resp.success)
+            throw new Error(resp.reason);
+
         return new this.eventModel(event).save();
     }
 
-    async adminChangeEvents(eventChanges) {
-        
+    async adminChangeEvents(eventChanges)
+    {    
         const bulkList = [];
         
         var toChangeFlag = false;
@@ -195,7 +232,8 @@ export class EventsService {
                 }
                 bulkList.push({
                     insertOne: { document: {
-                            ...event
+                            ...event,
+                            createdDate: new Date()
                         }
                     }
                 })
@@ -206,7 +244,6 @@ export class EventsService {
         if(eventChanges.deletedEvents) {
 
             for(var i = 0; i < eventChanges.deletedEvents.length; i++) {
-                console.log("checking deleted events: "+ JSON.stringify(eventChanges.deletedEvents));
                 const {eventID} = eventChanges.deletedEvents[i];
                 bulkList.push( { deleteOne: { filter: { _id: eventID } } } );
                 toChangeFlag = true;
@@ -233,8 +270,10 @@ export class EventsService {
             link: 1,
             venue: 1,
             category: 1,
+            contact: 1,
             from: 1,
-            to: 1
+            to: 1,
+            price: 1
         })
         ;
     }

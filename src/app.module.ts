@@ -8,11 +8,6 @@ import { EventModule } from './events/event.module';
 import { AppController } from './app.controller';
 import {ICWModule} from './icw.module';
 
-const test = () => {
-  console.log("Mongo test: ",process.env.MONGO_HOST);
-  return process.env.MONGO_HOST;
-}
-
 @Module({
   imports: [ConfigModule.forRoot({isGlobal: true, envFilePath: ['.env.development'],}),
     ICWModule

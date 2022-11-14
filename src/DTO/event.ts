@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { IsNotEmpty, IsString, IsNumberString, IsEmail, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumberString, IsEmail, IsNumber, IsDateString } from 'class-validator';
 
 export type EventDocument = Event & Document;
 @Schema()
@@ -40,12 +40,24 @@ export class Event {
     createdByEmail: string;
 
     @Prop()
+    @IsDateString()
+    createdDate : Date;
+
+    @Prop()
     @IsString()
-    phoneNumber: string;
+    phoneNo: string;
 
     @Prop()
     @IsString()
     category: string;
+
+    @Prop()
+    @IsString()
+    contact: string;
+
+    @Prop()
+    @IsNumber()
+    price: number;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

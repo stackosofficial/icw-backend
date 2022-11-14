@@ -1,0 +1,67 @@
+Date : 2022-11-05 19:43:01
+Directory : c:\Users\mithu\Documents\work\stackos\icw-backend
+Total : 33 files,  10680 codes, 21 comments, 238 blanks, all 10939 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          5 |      9,590 |          8 |          3 |      9,601 |
+| TypeScript         |         23 |        978 |         11 |        210 |      1,199 |
+| Markdown           |          1 |         52 |          2 |         21 |         75 |
+| JavaScript         |          1 |         25 |          0 |          1 |         26 |
+| JSON with Comments |          1 |         21 |          0 |          1 |         22 |
+| Shell Script       |          2 |         14 |          0 |          2 |         16 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                      | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                         |         33 |     10,680 |         21 |        238 |     10,939 |
+| src                                                                                       |         22 |        958 |         11 |        205 |      1,174 |
+| src\DTO                                                                                   |          5 |        106 |          0 |         40 |        146 |
+| src\events                                                                                |          6 |        589 |          2 |        116 |        707 |
+| src\newsletter                                                                            |          3 |        114 |          2 |         18 |        134 |
+| test                                                                                      |          2 |         29 |          0 |          6 |         35 |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                  | language           | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\Users\mithu\Documents\work\stackos\icw-backend\.eslintrc.js                            | JavaScript         |         25 |          0 |          1 |         26 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\README.md                               | Markdown           |         52 |          2 |         21 |         75 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\env.sh                                  | Shell Script       |         13 |          0 |          2 |         15 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\nest-cli.json                           | JSON               |          5 |          0 |          1 |          6 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\package-lock.json                       | JSON               |      9,497 |          0 |          1 |      9,498 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\package.json                            | JSON               |         76 |          6 |          0 |         82 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\DTO\admin.ts                        | TypeScript         |         41 |          0 |         11 |         52 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\DTO\event.ts                        | TypeScript         |         39 |          0 |         12 |         51 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\DTO\loginAuth.ts                    | TypeScript         |          5 |          0 |          5 |         10 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\DTO\newsletterEmail.ts              | TypeScript         |         13 |          0 |          6 |         19 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\DTO\userEventPayload.ts             | TypeScript         |          8 |          0 |          6 |         14 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\app.controller.spec.ts              | TypeScript         |         18 |          0 |          5 |         23 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\app.controller.ts                   | TypeScript         |         11 |          0 |          3 |         14 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\app.module.ts                       | TypeScript         |         21 |          0 |          4 |         25 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\app.service.ts                      | TypeScript         |          7 |          0 |          1 |          8 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\admin.controller.ts          | TypeScript         |         73 |          0 |         18 |         91 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\admin.service.ts             | TypeScript         |        227 |          0 |         45 |        272 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\event.module.ts              | TypeScript         |         20 |          0 |          2 |         22 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\event.service.ts             | TypeScript         |        215 |          0 |         32 |        247 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\user.controller.ts           | TypeScript         |         41 |          1 |         15 |         57 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\events\user.service.ts              | TypeScript         |         13 |          1 |          4 |         18 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\icw.module.ts                       | TypeScript         |         41 |          1 |          5 |         47 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\main.ts                             | TypeScript         |         10 |          6 |          4 |         20 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\newsletter\newsletter.controller.ts | TypeScript         |         27 |          0 |          4 |         31 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\newsletter\newsletter.module.ts     | TypeScript         |         11 |          0 |          3 |         14 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\newsletter\newsletter.service.ts    | TypeScript         |         76 |          2 |         11 |         89 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\userEmailService.ts                 | TypeScript         |         27 |          0 |          6 |         33 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\src\utils.ts                            | TypeScript         |         14 |          0 |          3 |         17 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\start.sh                                | Shell Script       |          1 |          0 |          0 |          1 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\test\app.e2e-spec.ts                    | TypeScript         |         20 |          0 |          5 |         25 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\test\jest-e2e.json                      | JSON               |          9 |          0 |          1 |         10 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\tsconfig.build.json                     | JSON               |          3 |          2 |          0 |          5 |
+| c:\Users\mithu\Documents\work\stackos\icw-backend\tsconfig.json                           | JSON with Comments |         21 |          0 |          1 |         22 |
+| Total                                                                                     |                    |     10,680 |         21 |        238 |     10,939 |
++-------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
