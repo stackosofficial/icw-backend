@@ -57,14 +57,14 @@ export class EventsService {
 
     validateEvent = (event : Event) => {
 
-        if(event.name.length > 32) {
+        if(event.name.length > 128) {
             return {
                 success: false,
                 reason: 'name should be less than 32 characters.'
             };
         }
 
-        if(event.venue && event.venue.length > 32) {
+        if(event.venue && event.venue.length > 128) {
             return {
                 success: false,
                 reason: 'Venue should be less than 32 characters.'
@@ -99,12 +99,12 @@ export class EventsService {
             }
         }
         
-        if(event.link && !stringIsAValidUrl(event.link, ['http', 'https'])) {
-            return {
-                success: false,
-                reason: 'Link is not a valid URL. Enter a HTTP/HTTPS link.'
-            };
-        }
+        // if(event.link && !stringIsAValidUrl(event.link, ['http', 'https'])) {
+        //     return {
+        //         success: false,
+        //         reason: 'Link is not a valid URL. Enter a HTTP/HTTPS link.'
+        //     };
+        // }
 
         if(!event.createdByEmail) {
             return {
