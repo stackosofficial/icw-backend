@@ -113,12 +113,12 @@ export class EventsService {
             }
         }
 
-        if(!isPhoneNo(event.phoneNo)) {
-            return {
-                success: false,
-                reason: 'Enter a valid phone no.'
-            }
-        }
+        // if(!isPhoneNo(event.phoneNo)) {
+        //     return {
+        //         success: false,
+        //         reason: 'Enter a valid phone no.'
+        //     }
+        // }
 
         if(event.category && !categoriesList.includes(event.category)) {
             return {

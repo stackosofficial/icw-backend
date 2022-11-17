@@ -28,7 +28,7 @@ COPY package*.json ./
 
 COPY . .
 
-COPY --from=development /usr/src/app/node_modules ./node_modules
+# COPY --from=development /usr/src/app/node_modules ./node_modules
 
 COPY --from=development /usr/src/app/dist ./dist
 
