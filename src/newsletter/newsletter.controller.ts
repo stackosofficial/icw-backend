@@ -13,10 +13,8 @@ export class NewsletterController {
   {
     const res = await this.userService.validateRecaptcha(payload.token);
 
-    console.log("res: ", JSON.stringify(res.data));
-
     if (!res || !res.data || !res.data.success)
-      return { success: false, reason: 'Failed to autenticate' };
+      return { success: false, reason: 'Failed to autenticate captcha.' };
 
     const resp = await this.newsletterService.addUserAndSendConfirmMail(
       payload.email,
